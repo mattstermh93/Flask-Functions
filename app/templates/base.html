@@ -7,8 +7,17 @@
     {% else %}
       <title>Sample - Home Page</title>
     {% endif %}
+    <link rel="stylesheet" href="../static/css/main.css">
   </head>
   <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="/index">Home Page</a></li>
+          <li><a href="/posts">Posts</a></li>
+        </ul>
+      </nav>
+    </header>
   {% block content %} {% endblock %}
   </body>
 </html>
