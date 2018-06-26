@@ -1,9 +1,15 @@
 h1 {
   color: blue;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .navbar, .navbar-inverse {
   border-radius: 0px;
+}
+
+.btn {
+  width: 100%;
 }
 
 footer {
@@ -14,4 +20,8 @@ footer p {
   color: grey;
   padding: 25px;
   background-color: black;
+}
+
+form {
+  margin-bottom: 100px;
 }

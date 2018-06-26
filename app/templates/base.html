@@ -12,15 +12,28 @@
 {% block navbar %}
   <nav class="navbar navbar-inverse">
     <ul class="nav navbar-nav">
-      <li><a href="/index">Home</a></li>
-      <li><a href="posts">Posts</a></li>
+      <li><a href="{{ url_for('index') }}">Home</a></li>
+      <li><a href="{{ url_for('posts') }}">Posts</a></li>
+      <li><a href="{{ url_for('login') }}">Login</a></li>
+      <li><a href="{{ url_for('register') }}">Register</a></li>
     </ul>
   <p class="navbar-text">Some text</p>
   </nav>
 {% endblock %}
 
 {% block content %}
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
   {% block app_content %}{% endblock %}
+
 <footer>
   <p class="col-md-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam, tenetur error ab nisi totam possimus itaque quis voluptatem nemo eaque vero recusandae rem perspiciatis culpa perferendis animi nulla minus asperiores! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid suscipit ex, dolorum nostrum pariatur quae ad quisquam sint? Debitis cum repudiandae temporibus provident qui, architecto quae nulla, in harum molestias.</p>
   <p class="col-md-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam, tenetur error ab nisi totam possimus itaque quis voluptatem nemo eaque vero recusandae rem perspiciatis culpa perferendis animi nulla minus asperiores! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis velit asperiores, officiis dicta nulla molestiae. Incidunt, veritatis possimus a quos optio quod quisquam sed odio, laudantium voluptates molestias quam deserunt?</p>

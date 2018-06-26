@@ -1,13 +1,12 @@
 from app import app
-from flask import render_template, redirect, url_for
+from flask import render_template, redirect, url_for, flash
+from app.forms import LoginForm, RegistrationForm
 
-@app.route('/<name>', methods=['GET', 'PUT'])
-@app.route('/index/<name>', methods=['GET', 'PUT'])
-def index(name):
+@app.route('/')
+@app.route('/index')
+def index():
     user = { 'username': 'Connor'}
-    num = 2 + 2
-    return render_template("index.html", user2=user,
-    num=num, name=name, title='Home Page')
+    return render_template("index.html", user=user, title='Home Page')
 
 @app.route('/posts')
 def posts():
@@ -22,3 +21,38 @@ def posts():
 @app.route('/redirect')
 def goaway():
     return redirect(url_for('index'))
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    login_form = LoginForm()
+    if login_form.validate_on_submit():
+        flash('Thank you for logging in {}!'.format(login_form.username.data))
+        return redirect(url_for('index'))
+    return render_template('login.html', form=login_form)
+    
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    register_form = RegistrationForm()
+    if register_form.validate_on_submit():
+        flash('Thank you for registering! {}!'.format(register_form.username.data))
+        return redirect(url_for('login'))
+    return render_template('register.html', form=register_form)
+
+
+# app.route('/register', methods=['GET', 'POST'])
+# def register():
+#     form = RegistrationForm(request.form)
+#     if request.method == 'POST' and form.validate():
+#         user = User(form.username.data, form.email.data,
+#                     form.password.data)
+#         flash('Thank you for logging in {}!'.format(login_form.username.data))
+#         return redirect(url_for('login'))
+#     return render_template('register.html', form=form)
+
+# @app.route('/register', methods=['GET', 'POST'])
+# def register():
+#     register_form = LoginForm()
+#     if register_form.validate_on_submit():
+#         flash('Thank you for registering! {}!'.format(register_form.username.data))
+#         return redirect(url_for('index'))
+#     return render_template('register.html', form=register_form)
