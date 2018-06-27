@@ -1,10 +1,23 @@
 {% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
 
 {% block title %} Posts - {{ super() }} {% endblock %}
 
 {% block app_content %}
-  <h1> Below are some posts: </h1>
-  {% for post in posts %}
-    <p>{{ post }}</p>
-  {% endfor %}
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <h1>write a new post!</h1>
+    {{ wtf.quick_form(form) }}
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <h1> Below are your posts posts: </h1>
+    {% for post in posts %}
+      <p>{{ post }}</p>
+    {% endfor %}
+  </div>
+</div>
+
+
 {% endblock %}
