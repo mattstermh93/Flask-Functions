@@ -5,7 +5,6 @@ from app.forms import LoginForm, RegistrationForm
 @app.route('/')
 @app.route('/index')
 def index():
-    user = { 'username': 'Connor'}
     return render_template("index.html", user=user, title='Home Page')
 
 @app.route('/posts')
@@ -29,13 +28,13 @@ def login():
         flash('Thank you for logging in {}!'.format(login_form.username.data))
         return redirect(url_for('index'))
     return render_template('login.html', form=login_form)
-    
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     register_form = RegistrationForm()
     if register_form.validate_on_submit():
         flash('Thank you for registering! {}!'.format(register_form.username.data))
-        return redirect(url_for('login'))
+        return redirect(url_for('index'))
     return render_template('register.html', form=register_form)
 
 
